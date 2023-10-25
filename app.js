@@ -1,9 +1,31 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { connectToDatabase } = require("./database");
-const appartementController = require("./controller/appartementController");
-// const mesureController = require("./mesureController");
-// const consommationDataCenterController = require("./consommationDataCenterController");
+const {
+	createAppartement,
+	getAppartements,
+	getAppartementById,
+	updateAppartement,
+	deleteAppartement,
+	deleteAllAppartements
+} = require("./controller/appartementController");
+const {
+	createMesure,
+	getMesures,
+	getMesureById,
+	updateMesure,
+	deleteMesure,
+	deleteAllMessures,
+	calculateDistribution
+} = require("./controller/mesureController");
+const {
+	createConsommationDataCenter,
+	getConsommationsDataCenter,
+	getConsommationDataCenterById,
+	updateConsommationDataCenter,
+	deleteConsommationDataCenter,
+	deleteAllConsommationsDataCenter
+} = require("./controller/consommationDataCenterController");
 require("dotenv").config();
 
 const app = express();
@@ -12,37 +34,34 @@ app.use(bodyParser.json());
 // Connexion à la base de données
 connectToDatabase();
 
-// Routes pour les opérations CRUD sur les appartements
-app.post("/appartements", async (req, res) => {
-	const nouvelAppartement = await appartementController.createAppartement(
-		req.body
-	);
-	res.json(nouvelAppartement);
-});
+// ROUTES
 
-app.get("/appartements", async (req, res) => {
-	const tousLesAppartements = await appartementController.getAppartements();
-	res.json(tousLesAppartements);
-});
+// Appartements
+app.post("/appartements", createAppartement);
+app.get("/appartements", getAppartements);
+app.get("/appartements/:id", getAppartementById);
+app.put("/appartements/:id", updateAppartement);
+app.delete("/appartements/:id", deleteAppartement);
+app.delete("/appartements", deleteAllAppartements);
 
-// ... (routes pour d'autres opérations CRUD sur les appartements)
+// Mesures
+app.post("/mesures", createMesure);
+app.get("/mesures", getMesures);
+app.get("/mesures/:id", getMesureById);
+app.put("/mesures/:id", updateMesure);
+app.delete("/mesures/:id", deleteMesure);
+app.delete("/mesures", deleteAllMessures);
 
-// Routes pour les opérations CRUD sur les mesures
-app.post("/mesures", async (req, res) => {
-	const nouvelleMesure = await mesureController.createMesure(req.body);
-	res.json(nouvelleMesure);
-});
+// Consommations Data Center
+app.post("/consommations-data-center", createConsommationDataCenter);
+app.get("/consommations-data-center", getConsommationsDataCenter);
+app.get("/consommations-data-center/:id", getConsommationDataCenterById);
+app.put("/consommations-data-center/:id", updateConsommationDataCenter);
+app.delete("/consommations-data-center/:id", deleteConsommationDataCenter);
+app.delete("/consommations-data-center", deleteAllConsommationsDataCenter);
 
-// ... (routes pour d'autres opérations CRUD sur les mesures)
-
-// Routes pour les opérations CRUD sur la consommation du data center
-app.post("/consommation-data-center", async (req, res) => {
-	const nouvelleConsommation =
-		await consommationDataCenterController.createConsommation(req.body);
-	res.json(nouvelleConsommation);
-});
-
-// ... (routes pour d'autres opérations CRUD sur la consommation du data center)
+// Calculer et distribuer l'énergie
+app.post("/calculer-distribuer-energie", calculateDistribution);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
