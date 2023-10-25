@@ -1,26 +1,30 @@
 {
-  "name": "apigreenchauffage",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/calel44/APIGreenChauffage.git"
-  },
-  "keywords": [],
-  "author": "CalvinC",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/calel44/APIGreenChauffage/issues"
-  },
-  "homepage": "https://github.com/calel44/APIGreenChauffage#readme",
-  "description": "",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "mongodb": "^6.2.0",
-    "mongoose": "^7.6.3"
-  }
+	"name": "apigreenchauffage",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/calel44/APIGreenChauffage.git"
+	},
+	"keywords": [],
+	"author": "CalvinC",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/calel44/APIGreenChauffage/issues"
+	},
+	"homepage": "https://github.com/calel44/APIGreenChauffage#readme",
+	"description": "",
+	"dependencies": {
+		"body-parser": "^1.20.2",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"mongodb": "^6.2.0",
+		"mongoose": "^7.6.3"
+	},
+	"devDependencies": {
+		"nodemon": "^3.0.1"
+	}
 }
