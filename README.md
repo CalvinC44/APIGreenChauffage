@@ -1,3 +1,10 @@
+# START PROJECT
+
+After adding the .env file with database password:
+
+- npm i
+- npm start
+
 # ROUTES
 
 - create/read/update/delete appartement
