@@ -26,18 +26,13 @@ const {
 	deleteConsommationDataCenter,
 	deleteAllConsommationsDataCenter
 } = require("./controller/consommationDataCenterController");
-const cors = require("cors"); // Ajout du middleware CORS
 require("dotenv").config();
-
+const cors = require("cors");
 const app = express();
 app.use(bodyParser.json());
 
-var corsOptions = {
-	origin: "localhost:3000"
-};
-
-app.use(cors(corsOptions));
-
+// CORS
+app.use(cors());
 // Connexion à la base de données
 connectToDatabase();
 
@@ -70,7 +65,7 @@ app.delete("/consommations-data-center", deleteAllConsommationsDataCenter);
 // Calculer et distribuer l'énergie
 app.post("/calculer-distribuer-energie", calculateDistribution);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
 	console.log(`Serveur écoutant sur le port ${PORT}`);
 });
