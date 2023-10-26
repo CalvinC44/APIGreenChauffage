@@ -26,10 +26,12 @@ const {
 	deleteConsommationDataCenter,
 	deleteAllConsommationsDataCenter
 } = require("./controller/consommationDataCenterController");
+const cors = require("cors"); // Ajout du middleware CORS
 require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors()); // Utilisation du middleware CORS
 
 // Connexion à la base de données
 connectToDatabase();
