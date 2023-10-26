@@ -31,7 +31,12 @@ require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors()); // Utilisation du middleware CORS
+
+var corsOptions = {
+	origin: "localhost:3000"
+};
+
+app.use(cors(corsOptions));
 
 // Connexion à la base de données
 connectToDatabase();
